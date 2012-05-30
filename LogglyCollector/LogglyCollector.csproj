@@ -108,6 +108,11 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)$(OutDir)"
+mkdir merged
+..\..\..\tools\ILMerge.exe /target:winexe /out:merged/LogglyCollector.exe /targetPlatform:4.0 LogglyCollector.exe loggly.dll Newtonsoft.Json.dll</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
